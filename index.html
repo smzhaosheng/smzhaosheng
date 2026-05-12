@@ -1,9 +1,11 @@
+以下是按您的要求修改后的版本：整体配色改为蓝色基调，并将主要大标题（如页面主标题、学校名称等）设为红色。交互功能与移动端自动滚动体验保持不变。
+```html
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>石门县2026义务教育阳光招生 | 划片查询系统</title>
+    <title>石门县2026义务教育招生 | 划片查询系统</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
@@ -15,15 +17,14 @@
         }
 
         body {
-            background: linear-gradient(145deg, #eef3ef 0%, #e0ebe3 100%);
+            background: linear-gradient(145deg, #eef2f9 0%, #d9e2f0 100%);
             font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', 'Roboto', sans-serif;
             padding: 20px 16px;
-            color: #1c2e28;
+            color: #1e2b3c;
             line-height: 1.45;
             font-size: 16px;
         }
 
-        /* 主容器 */
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -31,12 +32,11 @@
             border-radius: 2rem;
             box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
             overflow: hidden;
-            transition: all 0.2s;
         }
 
-        /* 头部 */
+        /* 蓝色基调头部 */
         .header {
-            background: linear-gradient(115deg, #0f5538, #198155);
+            background: linear-gradient(115deg, #0a2b5e, #1a4b8c);
             padding: 28px 28px 24px;
             color: white;
             position: relative;
@@ -55,6 +55,7 @@
             font-weight: 700;
             letter-spacing: -0.3px;
             margin-bottom: 8px;
+            color: #ff5a5a;  /* 大标题红色 */
         }
         .header p {
             opacity: 0.9;
@@ -71,22 +72,19 @@
             margin-top: 14px;
         }
 
-        /* 双栏布局：桌面端两栏，移动端堆叠 */
         .main-content {
             display: flex;
             flex-wrap: wrap;
         }
 
-        /* 左侧面板：只保留选择控件 + 学校列表 */
         .control-panel {
             flex: 1.2;
             min-width: 280px;
-            background: #fefcf7;
-            border-right: 1px solid #e6ede8;
+            background: #fafcff;
+            border-right: 1px solid #e2e8f2;
             padding: 28px 24px;
         }
 
-        /* 右侧面板：类别说明 + 招生范围详情 */
         .info-panel {
             flex: 2.2;
             min-width: 280px;
@@ -94,7 +92,6 @@
             padding: 28px 28px;
         }
 
-        /* 选择组样式 */
         .select-group {
             margin-bottom: 36px;
         }
@@ -105,8 +102,8 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            color: #1a6e48;
-            background: #f0f9f0;
+            color: #1a4b8c;
+            background: #eef3fc;
             padding: 6px 16px;
             border-radius: 40px;
             width: fit-content;
@@ -118,7 +115,7 @@
             margin-top: 8px;
         }
         .type-btn, .stage-btn {
-            background: #f2f6f4;
+            background: #f0f4fa;
             border: none;
             padding: 9px 20px;
             border-radius: 60px;
@@ -126,19 +123,18 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
-            color: #2c4a3b;
+            color: #2c4a6e;
         }
         .type-btn.active, .stage-btn.active {
-            background: #2b7a4b;
+            background: #1e5a9c;
             color: white;
-            box-shadow: 0 6px 12px -6px rgba(43,122,75,0.4);
+            box-shadow: 0 6px 12px -6px rgba(30,90,156,0.4);
         }
-        /* 学校列表区域 */
         .school-list-title {
             font-weight: 700;
             margin: 28px 0 16px 0;
             font-size: 1.1rem;
-            color: #1e6a45;
+            color: #1a4b8c;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -153,44 +149,43 @@
         }
         .school-item {
             background: #ffffff;
-            border: 1px solid #e1ebe4;
+            border: 1px solid #cfdfef;
             border-radius: 60px;
             padding: 9px 20px;
             font-size: 0.88rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
-            color: #2d4a3a;
+            color: #2c4a6e;
         }
         .school-item.active {
-            background: #2b7a4b;
+            background: #1e5a9c;
             color: white;
-            border-color: #2b7a4b;
-            box-shadow: 0 6px 12px -8px rgba(43,122,75,0.3);
+            border-color: #1e5a9c;
+            box-shadow: 0 6px 12px -8px rgba(30,90,156,0.3);
         }
-        /* 右侧卡片样式 */
         .desc-card {
-            background: #fafef7;
+            background: #f5f9ff;
             border-radius: 28px;
             padding: 22px 24px;
             margin-bottom: 28px;
-            border: 1px solid #e2f0e5;
+            border: 1px solid #dce9f5;
             box-shadow: 0 8px 18px -10px rgba(0, 0, 0, 0.05);
         }
         .desc-card h4 {
             font-size: 1.25rem;
             font-weight: 700;
-            color: #146b43;
+            color: #1a4b8c;
             margin-bottom: 14px;
             display: flex;
             align-items: center;
             gap: 10px;
-            border-left: 4px solid #7fc29b;
+            border-left: 4px solid #6293c7;
             padding-left: 16px;
         }
         .desc-card .condition {
             font-weight: 600;
-            color: #2b704b;
+            color: #2c5a8c;
             margin: 12px 0 10px;
             font-size: 0.95rem;
         }
@@ -200,31 +195,32 @@
             border-radius: 24px;
             margin-top: 14px;
             font-size: 0.9rem;
-            border-left: 4px solid #a9cfb8;
+            border-left: 4px solid #98b8da;
             line-height: 1.5;
         }
         .range-container {
-            background: #fffef8;
+            background: #fefeff;
             border-radius: 28px;
             padding: 24px 26px;
-            border: 1px solid #f2e8da;
+            border: 1px solid #e2edfa;
             box-shadow: 0 10px 20px -12px rgba(0,0,0,0.08);
         }
+        /* 大字体红色：学校名称红色 */
         .school-name-lg {
             font-size: 1.7rem;
             font-weight: 800;
-            color: #206a44;
+            color: #d14545;
             margin-bottom: 12px;
-            border-bottom: 2px dashed #d9e5dd;
+            border-bottom: 2px dashed #e5eef7;
             padding-bottom: 10px;
             display: inline-block;
         }
         .range-text {
             font-size: 1rem;
             line-height: 1.6;
-            color: #2c553f;
+            color: #2c4b6e;
             white-space: pre-wrap;
-            background: #fefcf5;
+            background: #fafcfe;
             padding: 18px 20px;
             border-radius: 24px;
             margin-top: 8px;
@@ -240,24 +236,24 @@
             font-weight: 500;
         }
         .info-note {
-            background: #eef4f0;
+            background: #eef4fc;
             border-radius: 24px;
             padding: 16px 20px;
             font-size: 0.85rem;
-            color: #195e3f;
+            color: #1f4d7a;
             margin-top: 28px;
             line-height: 1.5;
         }
         footer {
-            background: #f9fbf8;
-            border-top: 1px solid #e0ede5;
+            background: #f8fafd;
+            border-top: 1px solid #e2ebf3;
             padding: 18px 28px;
             font-size: 0.75rem;
-            color: #5c7b6a;
+            color: #5c7c9e;
             text-align: center;
         }
 
-        /* 📱 移动端优化（堆叠布局 & 按钮触及优化） */
+        /* 📱 移动端优化：自动滚动 */
         @media (max-width: 780px) {
             body {
                 padding: 12px 12px;
@@ -267,7 +263,7 @@
             }
             .control-panel {
                 border-right: none;
-                border-bottom: 1px solid #e6ede8;
+                border-bottom: 1px solid #e2eaf2;
                 padding: 24px 20px;
             }
             .info-panel {
@@ -295,6 +291,7 @@
             }
             .header h1 {
                 font-size: 1.6rem;
+                color: #ff5a5a;
             }
         }
         button {
@@ -308,12 +305,12 @@
 <body>
 <div class="container">
     <div class="header">
-        <h1>🌿 石门县2026年核心城区义务教育学校招生生源类型和划片招生范围</h1>
+        <h1>🌿 石门县2026年城区义务教育学校招生政策</h1>
         <p>阳光划片 · 生源类别 · 一键查询</p>
         <div class="badge">📖 依据《石门县2026年义务教育学校招生工作方案》</div>
     </div>
     <div class="main-content">
-        <!-- 左侧面板：仅选择控件 + 学校列表 -->
+        <!-- 左侧面板：选择控件 + 学校列表 -->
         <div class="control-panel">
             <div class="select-group">
                 <div class="select-label"><span>📚</span> 学段选择</div>
@@ -335,7 +332,7 @@
             </div>
 
             <div class="school-list-title">
-                <span>🏷️</span> 招生学校列表 <span style="font-size:0.7rem; background:#e2f0e5; padding:2px 12px; border-radius:60px;">点选查看范围</span>
+                <span>🏷️</span> 招生学校列表 <span style="font-size:0.7rem; background:#e2ecf9; padding:2px 12px; border-radius:60px;">点选查看范围</span>
             </div>
             <div id="schoolListContainer" class="school-grid scrollable">
                 <!-- 动态学校按钮 -->
@@ -408,7 +405,7 @@
         { name: "澧斓学校（初中部）", range: "民办学校：以城区初中学校招生片区生源为主；生源不足时可面向全县各农村乡镇学校招生。超员摇号，须签订承诺书。" }
     ];
 
-    // 类别说明与材料（符合政策）
+    // 类别说明与材料
     const categoryDetails = {
         yhyf: { title: "✅ 有户有房", condition: "适龄儿童（少年）户籍在学校招生范围内，且本人或父母（法定监护人）或祖父母（外祖父母）自有房屋不动产在学校招生范围内。", materials: "①户口簿；②不动产证（或土地证/房屋所有权证/县不动产中心“有房证明”）；③亲子关系证明（出生证明或同户户口簿）。" },
         yfwh: { title: "🏠 有房无户", condition: "适龄儿童户籍不在学校招生范围内，但本人或父母（法定监护人）或祖父母（外祖父母）自有的房屋不动产在学校招生范围内。", materials: "①户口簿；②不动产证（或土地证/有房证明）；③亲子关系证明。" },
@@ -436,6 +433,16 @@
         return null;
     }
 
+    // 检测移动端并滚动到右侧信息面板（所点即所见）
+    function scrollToInfoPanelIfMobile() {
+        if (window.innerWidth <= 780) {
+            const infoPanel = document.querySelector('.info-panel');
+            if (infoPanel) {
+                infoPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    }
+
     // 渲染学校列表
     function renderSchoolList() {
         const container = document.getElementById("schoolListContainer");
@@ -460,6 +467,8 @@
                 btn.classList.add("active");
                 currentSchool = school;
                 updateSchoolRangeDisplay();
+                // 手机端自动滚动到右侧范围区
+                scrollToInfoPanelIfMobile();
             });
             container.appendChild(btn);
         });
@@ -496,7 +505,7 @@
                 <div class="material-list">
                     <strong>📎 关键证明材料：</strong><br>${detail.materials.replace(/\n/g, '<br>')}
                 </div>
-                <div style="margin-top: 14px; font-size:0.85rem; background:#f2f9f2; padding:10px 14px; border-radius:20px;">
+                <div style="margin-top: 14px; font-size:0.85rem; background:#eef3fc; padding:10px 14px; border-radius:20px;">
                 🔍 排序规则：公办校严格按“有户有房 > 有房无户 > 有户无房 > 无户无房”依次录取，录满为止。<br>
                 ⭐ 长幼随学需额外提交兄弟姐妹在校证明，由教育局统筹优先安排。
                 </div>
@@ -513,6 +522,8 @@
         });
         currentCategory = catKey;
         updateCategoryExplanation();
+        // 手机端自动滚动到右侧说明区域
+        scrollToInfoPanelIfMobile();
     }
 
     function setActiveStage(stage) {
@@ -524,8 +535,9 @@
         const schools = getSchoolListByStage(currentStage);
         currentSchool = schools.length ? schools[0] : null;
         renderSchoolList();
-        // 重新渲染后确保说明区域不受影响
+        // 切换学段后右侧需要更新类别说明（不变但刷新）且滚动到右侧
         updateCategoryExplanation();
+        scrollToInfoPanelIfMobile();
     }
 
     function bindEvents() {
@@ -551,3 +563,4 @@
 </script>
 </body>
 </html>
+```
