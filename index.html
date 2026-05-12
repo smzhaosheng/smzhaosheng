@@ -21,7 +21,7 @@
             line-height: 1.45;
             font-size: 16px;
             color: #2c3e50;
-            overflow-x: auto;   /* 窄屏时出现横向滚动条，防止内容自适应变形 */
+            overflow-x: auto;
         }
 
         /* 主容器 - 固定宽度，不随窗口自适应 */
@@ -175,7 +175,7 @@
             margin-bottom: 24px;
         }
         .school-item {
-            width: 150px;           /* 固定宽度，保证整齐排列 */
+            width: 150px;
             background: #fefefe;
             border: 1px solid #dee4ec;
             border-radius: 40px;
@@ -203,6 +203,7 @@
             border-radius: 20px;
             padding: 8px 4px;
         }
+        /* 红色大标题：学校名+招生范围 */
         .school-name-large {
             font-size: 1.55rem;
             font-weight: 800;
@@ -230,13 +231,22 @@
             color: #b1620c;
         }
 
-        /* 生源类型卡片内样式 */
+        /* 生源类型卡片内样式 - 增加红色标题 */
         .desc-block {
             background: #fafcff;
             border-radius: 18px;
             padding: 20px;
             margin-top: 16px;
             border-left: 4px solid #b10c0c;
+        }
+        /* 红色加大标题：用于“有户有房说明：”等 */
+        .type-title-red {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #b10c0c;
+            margin-bottom: 14px;
+            border-left: 3px solid #b10c0c;
+            padding-left: 14px;
         }
         .condition-text {
             font-weight: 600;
@@ -311,7 +321,7 @@
                 overflow-x: auto;
             }
             .site-wrapper {
-                margin: 0;          /* 靠左对齐，保留滚动条 */
+                margin: 0;
             }
         }
 
@@ -370,7 +380,8 @@
                     <!-- 划片范围展示区 -->
                     <div id="rangeDisplayScope" style="margin-top: 20px;">
                         <div class="range-card">
-                            <div class="school-name-large" id="selectedSchoolNameScope">石门县一完小</div>
+                            <!-- 此处显示 "学校名 + 招生范围：" 红色大标题 -->
+                            <div class="school-name-large" id="selectedSchoolNameScope">石门县一完小招生范围：</div>
                             <div class="range-detail" id="selectedSchoolRangeScope">
                                 楚江街道西门路以东的老西门社区；零阳北路以东的观山社区；城北立交桥向北延伸线以东的观山社区；县交通局（含）至白云路沿长龙岗路一线以西的荷花社区。
                             </div>
@@ -400,12 +411,7 @@
                         <button data-cat="zysx" class="cat-btn">长幼随学</button>
                     </div>
                     <div id="categoryDetailArea">
-                        <!-- 动态生成说明 -->
-                        <div class="desc-block">
-                            <div class="condition-text">📋 适龄儿童（少年）户籍在学校招生范围内，且本人或父母（法定监护人）或祖父母（外祖父母）自有房屋不动产在学校招生范围内。</div>
-                            <div class="material-list"><strong>📎 关键证明材料：</strong><br>①户口簿；②不动产证（或土地证/房屋所有权证/县不动产中心“有房证明”）；③亲子关系证明（出生证明或同户户口簿）。</div>
-                            <div class="rule-tip">🔍 排序规则：公办校严格按“有户有房 > 有房无户 > 有户无房 > 无户无房”依次录取，录满为止。<br>⭐ 长幼随学需额外提交兄弟姐妹在校证明，由教育局统筹优先安排。</div>
-                        </div>
+                        <!-- 动态生成说明（含红色标题） -->
                     </div>
                 </div>
             </div>
@@ -414,7 +420,7 @@
 
     <!-- 底部功能区 -->
     <div class="gov-footer">
-            <p style="margin-top:12px;">本页面仅作招生政策宣传，未尽事宜以《石门县2026年义务教育学校招生方案》为准</p>
+        <p style="margin-top:12px;">本页面仅作招生政策宣传，未尽事宜以《石门县2026年义务教育学校招生方案》为准</p>
     </div>
 </div>
 
@@ -445,6 +451,15 @@
         { name: "澧斓学校（初中部）", range: "民办学校：以城区初中学校招生片区生源为主；生源不足时可面向全县各农村乡镇学校招生。超员摇号，须签订承诺书。" }
     ];
 
+    // 生源类型的中文名称映射
+    const catNameMap = {
+        yhyf: "有户有房",
+        yfwh: "有房无户",
+        yhwf: "有户无房",
+        whwf: "无户无房",
+        zysx: "长幼随学"
+    };
+
     const categoryDetails = {
         yhyf: { condition: "适龄儿童（少年）户籍在学校招生范围内，且本人或父母（法定监护人）或祖父母（外祖父母）自有房屋不动产在学校招生范围内。", materials: "①户口簿；②不动产证（或土地证/房屋所有权证/县不动产中心“有房证明”）；③亲子关系证明（出生证明或同户户口簿）。" },
         yfwh: { condition: "适龄儿童户籍不在学校招生范围内，但本人或父母（法定监护人）或祖父母（外祖父母）自有的房屋不动产在学校招生范围内。", materials: "①户口簿；②不动产证（或土地证/有房证明）；③亲子关系证明。" },
@@ -471,6 +486,7 @@
         return null;
     }
 
+    // 渲染学校列表
     function renderSchoolList() {
         const container = document.getElementById("schoolListScope");
         if (!container) return;
@@ -494,7 +510,6 @@
                 btn.classList.add("active");
                 currentSchool = school;
                 updateRangeDisplay();
-                // 移动端（窄屏）自动滚动到范围区，提升体验
                 if (window.innerWidth <= 780) {
                     document.getElementById("rangeDisplayScope")?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }
@@ -504,11 +519,12 @@
         updateRangeDisplay();
     }
 
+    // 更新划片范围显示：学校名显示为 "学校名 + 招生范围："
     function updateRangeDisplay() {
         if (!currentSchool) return;
         const nameEl = document.getElementById("selectedSchoolNameScope");
         const rangeEl = document.getElementById("selectedSchoolRangeScope");
-        if (nameEl) nameEl.textContent = currentSchool.name;
+        if (nameEl) nameEl.textContent = `${currentSchool.name}招生范围：`;
         if (rangeEl) rangeEl.innerHTML = currentSchool.range.replace(/\n/g, '<br>');
 
         const ageDiv = document.getElementById("ageNoticeScope");
@@ -523,13 +539,16 @@
         }
     }
 
+    // 更新生源类型说明，添加红色大标题 “有户有房说明：”
     function updateCategoryDetail(catKey) {
         const detail = categoryDetails[catKey];
         if (!detail) return;
+        const typeName = catNameMap[catKey] || "类别";
         const container = document.getElementById("categoryDetailArea");
         if (container) {
             container.innerHTML = `
                 <div class="desc-block">
+                    <div class="type-title-red">${typeName}说明：</div>
                     <div class="condition-text">📋 ${detail.condition}</div>
                     <div class="material-list"><strong>📎 关键证明材料：</strong><br>${detail.materials.replace(/\n/g, '<br>')}</div>
                     <div class="rule-tip">🔍 排序规则：公办校严格按“有户有房 > 有房无户 > 有户无房 > 无户无房”依次录取，录满为止。<br>⭐ 长幼随学需额外提交兄弟姐妹在校证明，由教育局统筹优先安排。</div>
@@ -538,6 +557,7 @@
         }
     }
 
+    // 标签页切换
     function switchTab(tabId) {
         document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active-pane'));
         document.querySelectorAll('.tab-item').forEach(tab => tab.classList.remove('active'));
