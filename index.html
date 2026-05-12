@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>石门县2026年义务教育学校招生查询系统</title>
+    <title>石门县2026年义务教育招生查询系统</title>
     <meta name="description" content="石门县教育局官方招生划片查询丨生源类别说明丨阳光招生">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,31 +16,32 @@
         }
 
         body {
-            background: #f2f5f8;
-            font-family: 'Inter', '微软雅黑', system-ui, -apple-system, sans-serif;
+            background: #f0f2f5;
+            font-family: 'Inter', '微软雅黑', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.45;
             font-size: 16px;
             color: #2c3e50;
+            overflow-x: auto;   /* 窄屏时出现横向滚动条，防止内容自适应变形 */
         }
 
-        /* 主容器 - 政务卡片风格 */
+        /* 主容器 - 固定宽度，不随窗口自适应 */
         .site-wrapper {
-            max-width: 1200px;
+            width: 1100px;
             margin: 0 auto;
             background: white;
             box-shadow: 0 0 0 1px rgba(0,0,0,0.03), 0 8px 20px rgba(0,0,0,0.05);
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* ========== 头部标识区（政府红+白） ========== */
+        /* ========== 头部（政府红） ========== */
         .gov-header {
-            background: #b10c0c;  /* 政务红基调 */
+            background: #b10c0c;
             border-bottom: 3px solid #ffd966;
             padding: 0 24px;
         }
         .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
@@ -75,50 +76,51 @@
             font-size: 0.7rem;
             color: #fff3e6;
         }
-        /* 导航模拟 */
-        .gov-nav {
+
+        /* ========== 一级标签页（Tab） ========== */
+        .tab-bar {
             background: white;
-            border-bottom: 1px solid #e9ecef;
-            padding: 0 24px;
+            border-bottom: 1px solid #e6eef5;
+            padding: 0 28px;
         }
-        .nav-items {
-            max-width: 1200px;
-            margin: 0 auto;
+        .tab-container {
             display: flex;
-            gap: 28px;
-            padding: 0;
-            list-style: none;
+            gap: 32px;
         }
-        .nav-items li {
+        .tab-item {
+            font-size: 1.05rem;
             font-weight: 600;
-            font-size: 0.95rem;
-            padding: 14px 0;
+            padding: 16px 0 14px;
+            cursor: pointer;
             color: #4a627a;
-            cursor: default;
-            border-bottom: 2px solid transparent;
-            transition: 0.2s;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
         }
-        .nav-items li.active-nav {
+        .tab-item.active {
             color: #b10c0c;
             border-bottom-color: #b10c0c;
         }
 
-        /* ========== 中部内容区 ========== */
+        /* ========== 内容区域 ========== */
         .main-content {
-            max-width: 1200px;
-            margin: 0 auto;
             padding: 32px 28px 48px;
+            flex: 1;
+        }
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active-pane {
+            display: block;
         }
 
-        /* 政务卡片通用样式 */
+        /* 政务卡片 */
         .gov-card {
             background: #ffffff;
             border-radius: 20px;
             box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
             border: 1px solid #eef2f6;
-            margin-bottom: 32px;
+            margin-bottom: 28px;
             overflow: hidden;
-            transition: all 0.2s;
         }
         .card-header {
             background: #f9fbfd;
@@ -133,21 +135,18 @@
             align-items: center;
             gap: 8px;
         }
-        .card-header h3 i {
-            font-size: 1.3rem;
-        }
         .card-body {
             padding: 24px;
         }
 
-        /* 按钮组 */
+        /* 学段按钮组 */
         .btn-group {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
-            margin-bottom: 8px;
+            margin-bottom: 24px;
         }
-        .stage-btn, .type-btn {
+        .stage-tab-btn {
             background: #f0f4f9;
             border: none;
             padding: 10px 28px;
@@ -159,62 +158,37 @@
             color: #2c5a7a;
             font-family: inherit;
         }
-        .stage-btn.active, .type-btn.active {
+        .stage-tab-btn.active-stage {
             background: #b10c0c;
             color: white;
-            box-shadow: 0 4px 10px rgba(177,12,12,0.25);
+            box-shadow: 0 4px 10px rgba(177,12,12,0.2);
         }
 
-        /* 说明区块 政务浅底 */
-        .desc-block {
-            background: #fafcff;
-            border-radius: 18px;
-            padding: 20px;
-            margin-top: 20px;
-            border-left: 4px solid #b10c0c;
-        }
-        .condition-text {
-            font-weight: 600;
-            color: #1f6e8c;
-            margin-bottom: 12px;
-            font-size: 0.95rem;
-        }
-        .material-list {
-            background: white;
-            padding: 14px 18px;
-            border-radius: 16px;
-            font-size: 0.88rem;
-            border: 1px solid #e9f0f5;
-            line-height: 1.5;
-        }
-        .rule-tip {
-            margin-top: 14px;
-            font-size: 0.8rem;
-            background: #eef3fc;
-            padding: 10px 16px;
-            border-radius: 16px;
-            color: #2c6e9e;
-        }
-
-        /* 学校列表 */
+        /* 学校列表 - 整齐排列（固定宽度按钮） */
         .school-grid {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
-            max-height: 260px;
+            max-height: 320px;
             overflow-y: auto;
             padding: 6px 2px;
+            margin-bottom: 24px;
         }
         .school-item {
+            width: 150px;           /* 固定宽度，保证整齐排列 */
             background: #fefefe;
             border: 1px solid #dee4ec;
             border-radius: 40px;
-            padding: 8px 20px;
+            padding: 8px 0;
             font-size: 0.85rem;
             font-weight: 500;
             cursor: pointer;
             transition: 0.2s;
             color: #2c6079;
+            text-align: center;
+            white-space: normal;
+            word-break: keep-all;
+            line-height: 1.3;
         }
         .school-item.active {
             background: #1e5a8c;
@@ -223,7 +197,7 @@
             box-shadow: 0 4px 8px rgba(30,90,140,0.2);
         }
 
-        /* 招生范围卡片内 */
+        /* 划片范围展示区 */
         .range-card {
             background: #fefefa;
             border-radius: 20px;
@@ -256,7 +230,59 @@
             color: #b1620c;
         }
 
-        /* 底部功能区（仿政府网） */
+        /* 生源类型卡片内样式 */
+        .desc-block {
+            background: #fafcff;
+            border-radius: 18px;
+            padding: 20px;
+            margin-top: 16px;
+            border-left: 4px solid #b10c0c;
+        }
+        .condition-text {
+            font-weight: 600;
+            color: #1f6e8c;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+        .material-list {
+            background: white;
+            padding: 14px 18px;
+            border-radius: 16px;
+            font-size: 0.88rem;
+            border: 1px solid #e9f0f5;
+            line-height: 1.5;
+        }
+        .rule-tip {
+            margin-top: 14px;
+            font-size: 0.8rem;
+            background: #eef3fc;
+            padding: 10px 16px;
+            border-radius: 16px;
+            color: #2c6e9e;
+        }
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .cat-btn {
+            background: #f0f4f9;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            color: #2c5a7a;
+        }
+        .cat-btn.active-cat {
+            background: #b10c0c;
+            color: white;
+        }
+
+        /* 底部 */
         .gov-footer {
             background: #f2f5f8;
             border-top: 1px solid #e2e8f0;
@@ -278,46 +304,17 @@
         .copyright {
             line-height: 1.6;
         }
-        .icp {
-            color: #8aa0b5;
+
+        /* 窄屏处理：保持固定宽度，出现横向滚动条（不自适应） */
+        @media (max-width: 1120px) {
+            body {
+                overflow-x: auto;
+            }
+            .site-wrapper {
+                margin: 0;          /* 靠左对齐，保留滚动条 */
+            }
         }
 
-        /* 移动端优化 */
-        @media (max-width: 780px) {
-            .site-title h1 {
-                font-size: 1.25rem;
-            }
-            .emblem {
-                font-size: 32px;
-            }
-            .main-content {
-                padding: 20px 16px;
-            }
-            .card-header {
-                padding: 14px 18px;
-            }
-            .card-body {
-                padding: 18px;
-            }
-            .stage-btn, .type-btn {
-                padding: 8px 20px;
-                font-size: 0.85rem;
-                flex: 1 0 auto;
-                text-align: center;
-            }
-            .school-name-large {
-                font-size: 1.3rem;
-            }
-            .range-detail {
-                font-size: 0.88rem;
-                padding: 14px;
-            }
-            .nav-items {
-                gap: 16px;
-                overflow-x: auto;
-                white-space: nowrap;
-            }
-        }
         button {
             font-family: inherit;
         }
@@ -331,97 +328,98 @@
 </head>
 <body>
 <div class="site-wrapper">
-    <!-- 头部标识区（政府国徽意象+红底白字） -->
+    <!-- 头部标识区 -->
     <div class="gov-header">
         <div class="header-container">
             <div class="logo-area">
                 <div class="emblem">🏛️</div>
                 <div class="site-title">
-                    <h1>石门县2026年城区义务教育学校招生政策</h1>
+                    <h1>石门县2026年城区义务教育学校招生划片范围及房户类型解读</h1>
                     <p>Shimen County Compulsory Education Enrollment</p>
                 </div>
             </div>
-            <div class="badge-header">阳光招生 · 划片查询</div>
+            <div class="badge-header">阳光招生 · 官方查询</div>
         </div>
     </div>
-    <!-- 中部内容区 -->
+
+    <!-- 一级标签栏 -->
+    <div class="tab-bar">
+        <div class="tab-container">
+            <div class="tab-item active" data-tab="scope">📌 划片范围</div>
+            <div class="tab-item" data-tab="category">🏷️ 生源类型</div>
+        </div>
+    </div>
+
+    <!-- 内容区域 -->
     <div class="main-content">
-        <!-- 1. 学段选择卡片 -->
-        <div class="gov-card">
-            <div class="card-header">
-                <h3>📖 1. 学段选择</h3>
-            </div>
-            <div class="card-body">
-                <div class="btn-group" id="stageGroup">
-                    <button data-stage="primary" class="stage-btn active">🏫 小学</button>
-                    <button data-stage="junior" class="stage-btn">📘 初中</button>
+        <!-- 划片范围标签页 -->
+        <div id="tabScope" class="tab-pane active-pane">
+            <div class="gov-card">
+                <div class="card-header">
+                    <h3>🏫 1. 选择学段</h3>
                 </div>
-                <div class="text-muted" style="margin-top: 12px; font-size:0.75rem;">※ 根据《石门县2026年义务教育学校招生工作方案》设置</div>
-            </div>
-        </div>
-
-        <!-- 2. 生源类型 + 说明（紧随其后） -->
-        <div class="gov-card">
-            <div class="card-header">
-                <h3>🏠 2. 生源类型（录取顺序）</h3>
-            </div>
-            <div class="card-body">
-                <div class="btn-group" id="categoryGroup">
-                    <button data-cat="yhyf" class="type-btn active">有户有房</button>
-                    <button data-cat="yfwh" class="type-btn">有房无户</button>
-                    <button data-cat="yhwf" class="type-btn">有户无房</button>
-                    <button data-cat="whwf" class="type-btn">无户无房</button>
-                    <button data-cat="zysx" class="type-btn">长幼随学</button>
-                </div>
-                <!-- 动态说明区域（紧跟类型下方） -->
-                <div id="categoryExplanation" style="margin-top: 20px;">
-                    <div class="desc-block">
-                        <div class="condition-text">📋 适龄儿童（少年）户籍在学校招生范围内，且本人或父母（法定监护人）或祖父母（外祖父母）自有房屋不动产在学校招生范围内。</div>
-                        <div class="material-list"><strong>📎 关键证明材料：</strong><br>①户口簿；②不动产证（或土地证/房屋所有权证/县不动产中心“有房证明”）；③亲子关系证明（出生证明或同户户口簿）。</div>
-                        <div class="rule-tip">🔍 排序规则：公办校严格按“有户有房 > 有房无户 > 有户无房 > 无户无房”依次录取，录满为止。<br>⭐ 长幼随学需额外提交兄弟姐妹在校证明，由教育局统筹优先安排。</div>
+                <div class="card-body">
+                    <div class="btn-group" id="stageGroupScope">
+                        <button data-stage="primary" class="stage-tab-btn active-stage">小学</button>
+                        <button data-stage="junior" class="stage-tab-btn">初中</button>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 3. 学校列表 + 招生范围（紧随其后） -->
-        <div class="gov-card">
-            <div class="card-header">
-                <h3>🏷️ 3. 招生学校列表 & 划片范围</h3>
-            </div>
-            <div class="card-body">
-                <div id="schoolListContainer" class="school-grid scrollable">
-                    <!-- 动态学校按钮 -->
-                </div>
-                <!-- 招生范围展示块（紧随学校列表） -->
-                <div id="schoolRangeDisplay" style="margin-top: 28px;">
-                    <div class="range-card">
-                        <div class="school-name-large" id="selectedSchoolName">石门县一完小</div>
-                        <div class="range-detail" id="selectedSchoolRange">
-                            楚江街道西门路以东的老西门社区；零阳北路以东的观山社区；城北立交桥向北延伸线以东的观山社区；县交通局（含）至白云路沿长龙岗路一线以西的荷花社区。
+                    <h3 style="font-size:1rem; margin: 16px 0 8px;">🏷️ 招生学校列表（整齐排列）</h3>
+                    <div id="schoolListScope" class="school-grid scrollable">
+                        <!-- 动态学校按钮 -->
+                    </div>
+                    <!-- 划片范围展示区 -->
+                    <div id="rangeDisplayScope" style="margin-top: 20px;">
+                        <div class="range-card">
+                            <div class="school-name-large" id="selectedSchoolNameScope">石门县一完小</div>
+                            <div class="range-detail" id="selectedSchoolRangeScope">
+                                楚江街道西门路以东的老西门社区；零阳北路以东的观山社区；城北立交桥向北延伸线以东的观山社区；县交通局（含）至白云路沿长龙岗路一线以西的荷花社区。
+                            </div>
+                            <div id="ageNoticeScope" class="age-warning" style="display: none;"></div>
                         </div>
-                        <div id="customAgeNotice" class="age-warning" style="display: none;"></div>
+                    </div>
+                    <div class="rule-tip" style="margin-top: 24px; background:#eef3fc;">
+                        💡 温馨提示：公办校按“有户有房 → 有房无户 → 有户无房 → 无户无房”依次录取；民办澧斓学校超员摇号。最终以教育局审核为准。<br>
+                        监督咨询：0736-5327775（基教股）
                     </div>
                 </div>
-                <div class="rule-tip" style="margin-top: 20px; background:#eef3fc;">
-                    💡 温馨提示：符合条件但未在网上报名者由教育局统筹调剂 / 各校按生源排序录取，最终以教育部门审核为准。监督咨询：0736-5327775（基教股）
+            </div>
+        </div>
+
+        <!-- 生源类型标签页 -->
+        <div id="tabCategory" class="tab-pane">
+            <div class="gov-card">
+                <div class="card-header">
+                    <h3>🏠 生源类型 & 证明材料</h3>
+                </div>
+                <div class="card-body">
+                    <div class="category-buttons" id="categoryGroup">
+                        <button data-cat="yhyf" class="cat-btn active-cat">有户有房</button>
+                        <button data-cat="yfwh" class="cat-btn">有房无户</button>
+                        <button data-cat="yhwf" class="cat-btn">有户无房</button>
+                        <button data-cat="whwf" class="cat-btn">无户无房</button>
+                        <button data-cat="zysx" class="cat-btn">长幼随学</button>
+                    </div>
+                    <div id="categoryDetailArea">
+                        <!-- 动态生成说明 -->
+                        <div class="desc-block">
+                            <div class="condition-text">📋 适龄儿童（少年）户籍在学校招生范围内，且本人或父母（法定监护人）或祖父母（外祖父母）自有房屋不动产在学校招生范围内。</div>
+                            <div class="material-list"><strong>📎 关键证明材料：</strong><br>①户口簿；②不动产证（或土地证/房屋所有权证/县不动产中心“有房证明”）；③亲子关系证明（出生证明或同户户口簿）。</div>
+                            <div class="rule-tip">🔍 排序规则：公办校严格按“有户有房 > 有房无户 > 有户无房 > 无户无房”依次录取，录满为止。<br>⭐ 长幼随学需额外提交兄弟姐妹在校证明，由教育局统筹优先安排。</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 底部功能区（仿政府网站） -->
+    <!-- 底部功能区 -->
     <div class="gov-footer">
-            <div class="copyright">
-            <p style="margin-top:12px;">本系统依据《石门县2026年义务教育学校招生工作方案》制作，仅作政策宣传</p>
-        </div>
+            <p style="margin-top:12px;">本页面仅作招生政策宣传，未尽事宜以《石门县2026年义务教育学校招生方案》为准</p>
     </div>
 </div>
 
 <script>
-    // --------------------------------------------------------------
-    // 学校数据（完全依据官方方案）
-    // --------------------------------------------------------------
+    // ---------- 学校数据 ----------
     const primarySchools = [
         { name: "石门县一完小", range: "楚江街道西门路以东的老西门社区；零阳北路（好望角大酒店旁）以东的观山社区；从城北立交桥起向北延伸线以东的观山社区；县交通局（含）至白云路沿长龙岗路一线以西的荷花社区。" },
         { name: "石门县二完小", range: "楚江街道西门路以西的老西门社区；方顶山东半部（含宝利公馆小区）的渫阳社区；龙凤社区。\n🔹特别说明：S304公路沿线宝峰街道七松社区部分村组（原清河村、向家村等）在有学位前提下可自愿选择二完小就读。" },
@@ -448,19 +446,18 @@
     ];
 
     const categoryDetails = {
-        yhyf: { title: "✅ 有户有房", condition: "适龄儿童（少年）户籍在学校招生范围内，且本人或父母（法定监护人）或祖父母（外祖父母）自有房屋不动产在学校招生范围内。", materials: "①户口簿；②不动产证（或土地证/房屋所有权证/县不动产中心“有房证明”）；③亲子关系证明（出生证明或同户户口簿）。" },
-        yfwh: { title: "🏠 有房无户", condition: "适龄儿童户籍不在学校招生范围内，但本人或父母（法定监护人）或祖父母（外祖父母）自有的房屋不动产在学校招生范围内。", materials: "①户口簿；②不动产证（或土地证/有房证明）；③亲子关系证明。" },
-        yhwf: { title: "📄 有户无房", condition: "适龄儿童户籍在学校招生范围内，但本人和父母（法定监护人）或祖父母在学校招生范围内无房产，租住在招生范围内。", materials: "①户口簿；②居住证或房屋租赁登记备案证明；③亲子关系证明。" },
-        whwf: { title: "🧾 无户无房 (随迁子女)", condition: "适龄儿童户籍不在县核心城区，本人/父母在城区无房产，但父母在学校招生范围内经商或务工并随迁租住。", materials: "①户口簿；②居住证或房屋租赁登记备案证明；③工商营业执照或务工证明（含社保流水/工资流水+劳务合同）。" },
-        zysx: { title: "👨‍👩‍👧‍👦 长幼随学", condition: "同一家庭已有子女在申请学校（非毕业年级）就读，为方便家长接送，可提出长幼随学申请。同等条件下优先安排调剂或录取，需提供兄弟姐妹在校就读证明（学籍卡/学生证等）。", materials: "①兄弟姐妹关系证明（同户户口簿或出生医学证明）；②该校在读子女学籍证明或学生证；③其他基础材料按对应类别提供，教育局审核认定。" }
+        yhyf: { condition: "适龄儿童（少年）户籍在学校招生范围内，且本人或父母（法定监护人）或祖父母（外祖父母）自有房屋不动产在学校招生范围内。", materials: "①户口簿；②不动产证（或土地证/房屋所有权证/县不动产中心“有房证明”）；③亲子关系证明（出生证明或同户户口簿）。" },
+        yfwh: { condition: "适龄儿童户籍不在学校招生范围内，但本人或父母（法定监护人）或祖父母（外祖父母）自有的房屋不动产在学校招生范围内。", materials: "①户口簿；②不动产证（或土地证/有房证明）；③亲子关系证明。" },
+        yhwf: { condition: "适龄儿童户籍在学校招生范围内，但本人和父母（法定监护人）或祖父母在学校招生范围内无房产，租住在招生范围内。", materials: "①户口簿；②居住证或房屋租赁登记备案证明；③亲子关系证明。" },
+        whwf: { condition: "适龄儿童户籍不在县核心城区，本人/父母在城区无房产，但父母在学校招生范围内经商或务工并随迁租住。", materials: "①户口簿；②居住证或房屋租赁登记备案证明；③工商营业执照或务工证明（含社保流水/工资流水+劳务合同）。" },
+        zysx: { condition: "同一家庭已有子女在申请学校（非毕业年级）就读，为方便家长接送，可提出长幼随学申请。同等条件下优先安排调剂或录取，需提供兄弟姐妹在校就读证明（学籍卡/学生证等）。", materials: "①兄弟姐妹关系证明（同户户口簿或出生医学证明）；②该校在读子女学籍证明或学生证；③其他基础材料按对应类别提供，教育局审核认定。" }
     };
 
     let currentStage = "primary";
-    let currentCategory = "yhyf";
     let currentSchool = null;
 
-    function getSchoolListByStage(stage) {
-        return stage === "primary" ? [...primarySchools] : [...juniorSchools];
+    function getSchoolList() {
+        return currentStage === "primary" ? [...primarySchools] : [...juniorSchools];
     }
 
     function getAgeRestrictionMessage(schoolName) {
@@ -474,27 +471,10 @@
         return null;
     }
 
-    // 更新类别说明区域
-    function updateCategoryExplanation() {
-        const detail = categoryDetails[currentCategory];
-        if (!detail) return;
-        const container = document.getElementById("categoryExplanation");
-        if (container) {
-            container.innerHTML = `
-                <div class="desc-block">
-                    <div class="condition-text">📋 ${detail.condition}</div>
-                    <div class="material-list"><strong>📎 关键证明材料：</strong><br>${detail.materials.replace(/\n/g, '<br>')}</div>
-                    <div class="rule-tip">🔍 排序规则：公办校严格按“有户有房 > 有房无户 > 有户无房 > 无户无房”依次录取，录满为止。<br>⭐ 长幼随学需额外提交兄弟姐妹在校证明，由教育局统筹优先安排。</div>
-                </div>
-            `;
-        }
-    }
-
-    // 渲染学校列表
     function renderSchoolList() {
-        const container = document.getElementById("schoolListContainer");
+        const container = document.getElementById("schoolListScope");
         if (!container) return;
-        const schools = getSchoolListByStage(currentStage);
+        const schools = getSchoolList();
         if (!schools.length) {
             container.innerHTML = "<div style='padding:12px;'>暂无学校数据</div>";
             return;
@@ -510,30 +490,28 @@
             if (currentSchool && currentSchool.name === school.name) btn.classList.add("active");
             btn.textContent = school.name;
             btn.addEventListener("click", () => {
-                document.querySelectorAll(".school-item").forEach(el => el.classList.remove("active"));
+                document.querySelectorAll("#schoolListScope .school-item").forEach(el => el.classList.remove("active"));
                 btn.classList.add("active");
                 currentSchool = school;
-                updateSchoolRangeDisplay();
-                // 移动端自动滚动到范围区（人性化）
+                updateRangeDisplay();
+                // 移动端（窄屏）自动滚动到范围区，提升体验
                 if (window.innerWidth <= 780) {
-                    const rangeEl = document.getElementById("schoolRangeDisplay");
-                    if (rangeEl) rangeEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    document.getElementById("rangeDisplayScope")?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }
             });
             container.appendChild(btn);
         });
-        if (currentSchool) updateSchoolRangeDisplay();
-        else if (schools.length) { currentSchool = schools[0]; updateSchoolRangeDisplay(); }
+        updateRangeDisplay();
     }
 
-    function updateSchoolRangeDisplay() {
+    function updateRangeDisplay() {
         if (!currentSchool) return;
-        const nameEl = document.getElementById("selectedSchoolName");
-        const rangeEl = document.getElementById("selectedSchoolRange");
+        const nameEl = document.getElementById("selectedSchoolNameScope");
+        const rangeEl = document.getElementById("selectedSchoolRangeScope");
         if (nameEl) nameEl.textContent = currentSchool.name;
         if (rangeEl) rangeEl.innerHTML = currentSchool.range.replace(/\n/g, '<br>');
 
-        const ageDiv = document.getElementById("customAgeNotice");
+        const ageDiv = document.getElementById("ageNoticeScope");
         if (currentStage === "primary") {
             const msg = getAgeRestrictionMessage(currentSchool.name);
             if (msg) {
@@ -545,48 +523,78 @@
         }
     }
 
-    function setActiveCategory(catKey) {
-        document.querySelectorAll("#categoryGroup .type-btn").forEach(btn => {
-            if (btn.getAttribute("data-cat") === catKey) btn.classList.add("active");
-            else btn.classList.remove("active");
-        });
-        currentCategory = catKey;
-        updateCategoryExplanation();
-        // 移动端自动滚动到类说明区域
-        if (window.innerWidth <= 780) {
-            document.getElementById("categoryExplanation")?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    function updateCategoryDetail(catKey) {
+        const detail = categoryDetails[catKey];
+        if (!detail) return;
+        const container = document.getElementById("categoryDetailArea");
+        if (container) {
+            container.innerHTML = `
+                <div class="desc-block">
+                    <div class="condition-text">📋 ${detail.condition}</div>
+                    <div class="material-list"><strong>📎 关键证明材料：</strong><br>${detail.materials.replace(/\n/g, '<br>')}</div>
+                    <div class="rule-tip">🔍 排序规则：公办校严格按“有户有房 > 有房无户 > 有户无房 > 无户无房”依次录取，录满为止。<br>⭐ 长幼随学需额外提交兄弟姐妹在校证明，由教育局统筹优先安排。</div>
+                </div>
+            `;
         }
     }
 
-    function setActiveStage(stage) {
-        document.querySelectorAll("#stageGroup .stage-btn").forEach(btn => {
-            if (btn.getAttribute("data-stage") === stage) btn.classList.add("active");
-            else btn.classList.remove("active");
-        });
-        currentStage = stage;
-        const schools = getSchoolListByStage(currentStage);
-        currentSchool = schools.length ? schools[0] : null;
-        renderSchoolList();
-        updateCategoryExplanation(); // 保留类别说明不变，但风格一致
+    function switchTab(tabId) {
+        document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active-pane'));
+        document.querySelectorAll('.tab-item').forEach(tab => tab.classList.remove('active'));
+        if (tabId === 'scope') {
+            document.getElementById('tabScope').classList.add('active-pane');
+            document.querySelector('.tab-item[data-tab="scope"]').classList.add('active');
+        } else {
+            document.getElementById('tabCategory').classList.add('active-pane');
+            document.querySelector('.tab-item[data-tab="category"]').classList.add('active');
+        }
     }
 
     function bindEvents() {
-        document.querySelectorAll("#stageGroup .stage-btn").forEach(btn => {
-            btn.addEventListener("click", () => setActiveStage(btn.getAttribute("data-stage")));
+        document.querySelectorAll('.tab-item').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const which = tab.getAttribute('data-tab');
+                switchTab(which);
+                if (which === 'scope') {
+                    if (currentSchool) updateRangeDisplay();
+                }
+            });
         });
-        document.querySelectorAll("#categoryGroup .type-btn").forEach(btn => {
-            btn.addEventListener("click", () => setActiveCategory(btn.getAttribute("data-cat")));
+
+        const stageBtns = document.querySelectorAll("#stageGroupScope .stage-tab-btn");
+        stageBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                stageBtns.forEach(b => b.classList.remove("active-stage"));
+                btn.classList.add("active-stage");
+                const stage = btn.getAttribute("data-stage");
+                currentStage = stage;
+                const schools = getSchoolList();
+                currentSchool = schools.length ? schools[0] : null;
+                renderSchoolList();
+            });
+        });
+
+        const catBtns = document.querySelectorAll("#categoryGroup .cat-btn");
+        catBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                catBtns.forEach(b => b.classList.remove("active-cat"));
+                btn.classList.add("active-cat");
+                const cat = btn.getAttribute("data-cat");
+                updateCategoryDetail(cat);
+                if (window.innerWidth <= 780) {
+                    document.getElementById("categoryDetailArea")?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            });
         });
     }
 
     function init() {
         bindEvents();
-        setActiveStage("primary");
-        setActiveCategory("yhyf");
-        const schools = getSchoolListByStage("primary");
-        if (schools.length) currentSchool = schools[0];
+        currentStage = "primary";
+        const schools = getSchoolList();
+        currentSchool = schools.length ? schools[0] : null;
         renderSchoolList();
-        updateSchoolRangeDisplay();
+        updateCategoryDetail("yhyf");
     }
 
     window.addEventListener("DOMContentLoaded", init);
